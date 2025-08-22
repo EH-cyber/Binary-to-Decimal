@@ -1,9 +1,15 @@
 #Converts binary to decimal
 import math
+
+# Functions
 def main():
+	'''
+	main() is the primary function for the program
+	It questions the user and uses match-case to determine which function to implement
+	'''
 		
-	decision = input('Would you like to convert:\n1. Decimal to Binary\n2. Binary to Decimal\n3. Binary Fraction to Decimal\nPlease input 1, 2, or 3: ')
-	decision = int(decision)
+	decision = int(input('Would you like to convert:\n1. Decimal to Binary\n2. Binary to Decimal\n3. Binary Fraction to Decimal\nPlease input 1, 2, or 3: '))
+#	decision = int(decision)
 	# Validate input
 
 	match decision:
@@ -27,10 +33,11 @@ def main():
 				WholeTup = math.modf(DecListWhole)
 				DecListWhole = int(WholeTup[1])
 			WholeConvStr = str(BinWholConv)
-			cleanWholeConv = WholeConvStr.strip('[]')
-			cleanWholeConv = cleanWholeConv.replace(',', '')
-			cleanWholeConv = cleanWholeConv.replace(' ', '')
-			cleanWholeConv = cleanWholeConv[::-1]
+			cleanWholeConv = cleanStr(WholeConvStr, 1)
+			# cleanWholeConv = WholeConvStr.strip('[]')
+			# cleanWholeConv = cleanWholeConv.replace(',', '')
+			# cleanWholeConv = cleanWholeConv.replace(' ', '')
+			# cleanWholeConv = cleanWholeConv[::-1]
 			# print('Whole Num ', DecList, ' is ', cleanWholeConv[::-1]) !! For TESTING
 			# Fraction to binary conversion
 			BinFracConv = []
@@ -47,9 +54,10 @@ def main():
 					DecListFrac = BinNum - 1
 				FracConvStr = str(BinFracConv)
 				BinFracLength = len(BinFracConv)
-				cleanFracConv = FracConvStr.strip('[]')
-				cleanFracConv = cleanFracConv.replace(',', '')
-				cleanFracConv = cleanFracConv.replace(' ', '')
+				cleanFracConv = cleanStr(FracConvStr, 0)
+				# cleanFracConv = FracConvStr.strip('[]')
+				# cleanFracConv = cleanFracConv.replace(',', '')
+				# cleanFracConv = cleanFracConv.replace(' ', '')
 			if BinWholConv:
 				if BinFracConv:
 					print('The Binary of ', DecNum, ' is ', cleanWholeConv + '.' + cleanFracConv)
@@ -112,6 +120,17 @@ def main():
 			cleanFracDec = splitFracDec[1]
 			print('The Decimal equivalent of ', BFStr, ' is ', str(WholDec) + '.' + cleanFracDec)
 
+
+def cleanStr(dirtyNum, fracWhole):
+	'''
+	cleanStr is for cleaning the string from the 
+	'''
+	cleanNum = dirtyNum.strip('[]')
+	cleanNum = cleanNum.replace(',','')
+	cleanNum = cleanNum.replace(' ','')
+	if fracWhole == 1:
+		cleanNum = cleanNum[::-1]
+	return cleanNum
 
 # Run the main function (AKA run program)
 main()
