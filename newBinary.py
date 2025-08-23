@@ -29,11 +29,11 @@ def main():
 			# Binary fraction to Decimal conversion
 			case 3:
 				# New code once binFracToDec() is completely built
-				# convNum = float(input('Binary fraction number to convert to Decimal fraction\n'))
+				convNum = float(input('Binary fraction number to convert to Decimal fraction\n'))
 				# newNum = binFracToDec(convNum)
 
 				# math.modf() splits the sides of the decimal
-				BFList = math.modf(binFracNum)
+				BFList = math.modf(convNum)
 				FracBinTup = BFList[0]
 				WholBinTup = BFList[1]
 
@@ -66,7 +66,7 @@ def main():
 				FracDec = str(FracDec)
 				splitFracDec = FracDec.split('.')
 				cleanFracDec = splitFracDec[1]
-				print('The Decimal equivalent of ', BFStr, ' is ', str(WholDec) + '.' + cleanFracDec)
+				print(f'The Decimal equivalent of {convNum} is {str(WholDec)}.{cleanFracDec}')
 
 			# Quit Program
 			case 4:
@@ -211,7 +211,7 @@ def binFracToDec(binFracNum):
 	FracDec = str(FracDec)
 	splitFracDec = FracDec.split('.')
 	cleanFracDec = splitFracDec[1]
-	print('The Decimal equivalent of ', BFStr, ' is ', str(WholDec) + '.' + cleanFracDec)
+	print(f'The Decimal equivalent of {binFracNum} is {str(WholDec)}.{cleanFracDec}')
 
 
 
