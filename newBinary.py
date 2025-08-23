@@ -77,12 +77,12 @@ def main():
 			print(f'{decision} is not a choice please restart the program.')
 
 
-def cleanStr(dirtyNum, fracWhole):
+def cleanStr(dirtyNum, fracWhole=0):
 	'''
 	cleanStr is for cleaning the string to display the appropriate binary number
 	input for cleanStr() is:
 	dirtyNum: String from binary list
-	fracWhole: 1 = Whole Number / 0 = Fraction of Number 
+	fracWhole: 1 = Whole Number / default is 0 for fraction numbers
 	'''
 	cleanNum = dirtyNum.strip('[]')
 	cleanNum = cleanNum.replace(',','')
@@ -136,7 +136,7 @@ def toBinary(decNum):
 			DecListFrac = BinNum - 1
 		FracConvStr = str(BinFracConv)
 		BinFracLength = len(BinFracConv)
-		cleanFracConv = cleanStr(FracConvStr, 0)
+		cleanFracConv = cleanStr(FracConvStr)
 
 	# Determines what to return
 	if BinWholConv:
