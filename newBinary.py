@@ -16,21 +16,15 @@ def main():
 				# Request input and convert it to float
 				convNum = float(input('What decimal number would you like to convert to binary? \nNumber to convert: '))
 				newNum = toBinary(convNum)
-				print(f'{convNum} in binary is {newNum}\n\n')
+				print(f'\n{convNum} in binary is {newNum}\n\n')
 
 			# Binary to Decimal conversion
 			case 2:
-				BnumStr = input('Binary number to convert to Decimal\n')[::-1]
-				Bnum = list(BnumStr)
-				Bnum = map(int, Bnum)
-				x = 0
-				Dnum = 0
-				for num in Bnum:
-					Tnum = 0
-					Tnum = num * 2**x
-					x = x + 1
-					Dnum = Dnum + Tnum
-				print('The decimal equivalent of ', BnumStr[::-1], 'is ', Dnum)
+				# Add input validation to verify 1 or 0 is input when requested
+				convNum = input('What binary number would you like to convert to decimal? \nNumber to convert: ')
+				newConvNum = list(convNum[::-1])
+				newNum = binToDec(newConvNum)
+				print(f'\n{convNum} is the decimal number {newNum}\n\n')
 
 			# Binary fraction to Decimal conversion
 			case 3:
@@ -73,12 +67,12 @@ def main():
 			
 			# Quit Program
 			case 4:
-				print('Thank you for using the program.')
+				print('Thank you for using the program.\n\n')
 				break
 			
 			# Catch all inappropriate input
 			case _:
-				print(f'{decision} is not a choice please select a number 1-4.')
+				print(f'\n{decision} is not a choice please select a number 1-4.\n\n')
 
 
 def cleanStr(dirtyNum, fracWhole=0):
@@ -88,9 +82,11 @@ def cleanStr(dirtyNum, fracWhole=0):
 	dirtyNum: String from binary list
 	fracWhole: 1 = Whole Number / default is 0 for fraction numbers
 	'''
+
 	cleanNum = dirtyNum.strip('[]')
 	cleanNum = cleanNum.replace(',','')
 	cleanNum = cleanNum.replace(' ','')
+	# Checks if this is was given the whole number option to reverse the order
 	if fracWhole == 1:
 		cleanNum = cleanNum[::-1]
 	return cleanNum
@@ -152,6 +148,23 @@ def toBinary(decNum):
 	elif cleanFracConv:
 		numStr = '0.' + cleanFracConv
 		return numStr
+	
+def binToDec(binNum):
+	'''
+	This function converts binary to decimal
+	input for binToDec() is a list
+	'''
+	# map() uses the function int() on all items in the list binNum
+	binNum = map(int, binNum)
+	x = 0
+	decNum = 0
+	for num in binNum:
+		tNum = 0
+		tNum = num * 2**x
+		x = x + 1
+		decNum = decNum + tNum
+	return str(decNum)
+
 
 
 # Run the main function (AKA run program)
