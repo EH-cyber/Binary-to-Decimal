@@ -163,7 +163,7 @@ def binToDec(binNum):
 		tNum = num * 2**x
 		x = x + 1
 		decNum = decNum + tNum
-	return str(decNum)
+	return decNum
 
 
 

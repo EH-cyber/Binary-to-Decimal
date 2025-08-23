@@ -22,4 +22,8 @@ This is the updated version of the program and will be the one updated. It will 
                 * dirtyNum is the string made in toBinary() that has remenants of the list it came from
                 * fracWhole is optional input that should be used for whole numbers. When used the value used should be the number 1
             * Output from this function is a clean string of binary
-        *
+        * binToDec()
+            * This function converts a binary number to a decimal
+            * Input required is a reversed list
+            * Output returned is an integer
+        * 
