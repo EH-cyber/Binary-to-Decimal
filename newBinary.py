@@ -7,74 +7,78 @@ def main():
 	main() is the primary function for the program
 	It questions the user and uses match-case to determine which function to implement
 	'''
-		
-	decision = int(input('Would you like to convert:\n1. Decimal to Binary\n2. Binary to Decimal\n3. Binary Fraction to Decimal\nPlease input 1, 2, or 3: '))
-#	decision = int(decision)
-	# Validate input
+	while True:	
+		decision = int(input('Would you like to convert:\n1. Decimal to Binary\n2. Binary to Decimal\n3. Binary Fraction to Decimal\n4. Quit Program\nPlease input 1, 2, 3, or 4: '))
 
-	match decision:
-		# Decimal to binary conversion
-		case 1:
-			# Request input and convert it to float
-			convNum = float(input('What decimal number would you like to convert to binary? \nNumber to convert: '))
-			newNum = toBinary(convNum)
-			print(f'{convNum} in binary is {newNum}')
+		match decision:
+			# Decimal to binary conversion
+			case 1:
+				# Request input and convert it to float
+				convNum = float(input('What decimal number would you like to convert to binary? \nNumber to convert: '))
+				newNum = toBinary(convNum)
+				print(f'{convNum} in binary is {newNum}\n\n')
 
-		# Binary to Decimal conversion
-		case 2:
-			BnumStr = input('Binary number to convert to Decimal\n')[::-1]
-			Bnum = list(BnumStr)
-			Bnum = map(int, Bnum)
-			x = 0
-			Dnum = 0
-			for num in Bnum:
-				Tnum = 0
-				Tnum = num * 2**x
-				x = x + 1
-				Dnum = Dnum + Tnum
-			print('The decimal equivalent of ', BnumStr[::-1], 'is ', Dnum)
+			# Binary to Decimal conversion
+			case 2:
+				BnumStr = input('Binary number to convert to Decimal\n')[::-1]
+				Bnum = list(BnumStr)
+				Bnum = map(int, Bnum)
+				x = 0
+				Dnum = 0
+				for num in Bnum:
+					Tnum = 0
+					Tnum = num * 2**x
+					x = x + 1
+					Dnum = Dnum + Tnum
+				print('The decimal equivalent of ', BnumStr[::-1], 'is ', Dnum)
 
-		# Binary fraction to Decimal conversion
-		case 3:
-			BFStr = input('Binary fraction number to convert to Decimal fraction\n')
-			BFNum = float(BFStr)
-			BFList = math.modf(BFNum)
-			FracBinTup = BFList[0]
-			WholBinTup = BFList[1]
+			# Binary fraction to Decimal conversion
+			case 3:
+				BFStr = input('Binary fraction number to convert to Decimal fraction\n')
+				BFNum = float(BFStr)
+				BFList = math.modf(BFNum)
+				FracBinTup = BFList[0]
+				WholBinTup = BFList[1]
 
-			# Whole Binary number conversion to decimal
-			WholBinStr = str(WholBinTup)
-			splitWholBin = WholBinStr.split('.')
-			cleanWholBin = str(splitWholBin[0])[::-1]
-			listWholBin = list(cleanWholBin)
-			listWholBin = map(int, listWholBin)
-			a = 0
-			WholDec = 0
-			for num in listWholBin:
-				TempNum = 0
-				TempNum = num * 2**a
-				a = a + 1
-				WholDec = WholDec + TempNum
+				# Whole Binary number conversion to decimal
+				WholBinStr = str(WholBinTup)
+				splitWholBin = WholBinStr.split('.')
+				cleanWholBin = str(splitWholBin[0])[::-1]
+				listWholBin = list(cleanWholBin)
+				listWholBin = map(int, listWholBin)
+				a = 0
+				WholDec = 0
+				for num in listWholBin:
+					TempNum = 0
+					TempNum = num * 2**a
+					a = a + 1
+					WholDec = WholDec + TempNum
 
-			FracBinStr = str(FracBinTup)
-			splitFracBin = FracBinStr.split('.')
-			cleanFracBin = str(splitFracBin[1])
-			listFracBin = list(cleanFracBin)
-			listFracBin = map(int, listFracBin[:8])
-			b = -1
-			FracDec = 0.0
-			for num in listFracBin:
-				TemNum = 0
-				TemNum = num * 2**b
-				b = b - 1
-				FracDec = FracDec + TemNum
-			FracDec = str(FracDec)
-			splitFracDec = FracDec.split('.')
-			cleanFracDec = splitFracDec[1]
-			print('The Decimal equivalent of ', BFStr, ' is ', str(WholDec) + '.' + cleanFracDec)
-		# Catch all inappropriate input
-		case _:
-			print(f'{decision} is not a choice please restart the program.')
+				FracBinStr = str(FracBinTup)
+				splitFracBin = FracBinStr.split('.')
+				cleanFracBin = str(splitFracBin[1])
+				listFracBin = list(cleanFracBin)
+				listFracBin = map(int, listFracBin[:8])
+				b = -1
+				FracDec = 0.0
+				for num in listFracBin:
+					TemNum = 0
+					TemNum = num * 2**b
+					b = b - 1
+					FracDec = FracDec + TemNum
+				FracDec = str(FracDec)
+				splitFracDec = FracDec.split('.')
+				cleanFracDec = splitFracDec[1]
+				print('The Decimal equivalent of ', BFStr, ' is ', str(WholDec) + '.' + cleanFracDec)
+			
+			# Quit Program
+			case 4:
+				print('Thank you for using the program.')
+				break
+			
+			# Catch all inappropriate input
+			case _:
+				print(f'{decision} is not a choice please select a number 1-4.')
 
 
 def cleanStr(dirtyNum, fracWhole=0):
