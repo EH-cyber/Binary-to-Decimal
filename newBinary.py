@@ -28,9 +28,12 @@ def main():
 
 			# Binary fraction to Decimal conversion
 			case 3:
-				BFStr = input('Binary fraction number to convert to Decimal fraction\n')
-				BFNum = float(BFStr)
-				BFList = math.modf(BFNum)
+				# New code once binFracToDec() is completely built
+				# convNum = float(input('Binary fraction number to convert to Decimal fraction\n'))
+				# newNum = binFracToDec(convNum)
+
+				# math.modf() splits the sides of the decimal
+				BFList = math.modf(binFracNum)
 				FracBinTup = BFList[0]
 				WholBinTup = BFList[1]
 
@@ -64,7 +67,7 @@ def main():
 				splitFracDec = FracDec.split('.')
 				cleanFracDec = splitFracDec[1]
 				print('The Decimal equivalent of ', BFStr, ' is ', str(WholDec) + '.' + cleanFracDec)
-			
+
 			# Quit Program
 			case 4:
 				print('Thank you for using the program.\n\n')
@@ -154,16 +157,61 @@ def binToDec(binNum):
 	This function converts binary to decimal
 	input for binToDec() is a list
 	'''
+
 	# map() uses the function int() on all items in the list binNum
 	binNum = map(int, binNum)
 	x = 0
 	decNum = 0
+
 	for num in binNum:
 		tNum = 0
 		tNum = num * 2**x
 		x = x + 1
 		decNum = decNum + tNum
+
+	# return a decimal integer
 	return decNum
+
+def binFracToDec(binFracNum):
+	'''
+	This function converts a binary fraction to a decimal
+	Input required is s
+	'''
+	# math.modf() splits the sides of the decimal
+	BFList = math.modf(binFracNum)
+	FracBinTup = BFList[0]
+	WholBinTup = BFList[1]
+
+	# Whole Binary number conversion to decimal
+	WholBinStr = str(WholBinTup)
+	splitWholBin = WholBinStr.split('.')
+	cleanWholBin = str(splitWholBin[0])[::-1]
+	listWholBin = list(cleanWholBin)
+	listWholBin = map(int, listWholBin)
+	a = 0
+	WholDec = 0
+	for num in listWholBin:
+		TempNum = 0
+		TempNum = num * 2**a
+		a = a + 1
+		WholDec = WholDec + TempNum
+
+	FracBinStr = str(FracBinTup)
+	splitFracBin = FracBinStr.split('.')
+	cleanFracBin = str(splitFracBin[1])
+	listFracBin = list(cleanFracBin)
+	listFracBin = map(int, listFracBin[:8])
+	b = -1
+	FracDec = 0.0
+	for num in listFracBin:
+		TemNum = 0
+		TemNum = num * 2**b
+		b = b - 1
+		FracDec = FracDec + TemNum
+	FracDec = str(FracDec)
+	splitFracDec = FracDec.split('.')
+	cleanFracDec = splitFracDec[1]
+	print('The Decimal equivalent of ', BFStr, ' is ', str(WholDec) + '.' + cleanFracDec)
 
 
 
